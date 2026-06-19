@@ -1,0 +1,843 @@
+/* ---- Глобальные стили ---- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: white;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+/* ---- Слот-машина ---- */
+.slot-machine {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 2px solid #444;
+}
+
+/* ---- Баланс ---- */
+.balance-container {
+    background-color: #0f0f1a;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.balance-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.balance-display {
+    background-color: #1a1a2e;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.balance-label {
+    color: #f8d347;
+    font-weight: bold;
+}
+
+.balance-amount {
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.vertical-btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.ad-btn {
+    background: linear-gradient(to bottom, #4caf50, #388e3c);
+}
+
+.ad-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.ad-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.promo-btn {
+    background: linear-gradient(145deg, #ff6b6b, #ee5a52);
+}
+
+.promo-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
+    border-color: #fff;
+}
+
+.promo-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.vertical-btn:active {
+    transform: scale(0.95);
+}
+
+.game-info {
+    background-color: #1a1a2e;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: left;
+    border: 1px solid #333;
+}
+
+.info-item {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #ddd;
+}
+
+.info-value {
+    color: #f8d347;
+    font-weight: bold;
+}
+
+/* ---- Заголовок ---- */
+h1 {
+    color: #f8d347;
+    margin: 0 0 20px 0;
+    font-size: 24px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- Слоты ---- */
+.slots-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    background-color: #0f0f1a;
+    padding: 15px 10px;
+    border-radius: 10px;
+    border: 2px solid #333;
+    gap: 5px;
+}
+
+.slot {
+    width: 30%;
+    max-width: 80px;
+    aspect-ratio: 2/3;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.slot-reel {
+    position: absolute;
+    width: 100%;
+    transition: top 0.1s;
+}
+
+.slot-item {
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
+
+/* ---- Кнопка крутить ---- */
+.spin-btn {
+    background: linear-gradient(to bottom, #f8d347, #e6b801);
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    color: #1a1a2e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.spin-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.spin-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.spin-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ---- Результат ---- */
+.result-message {
+    min-height: 60px;
+    font-size: 18px;
+    padding: 15px;
+    background-color: #0f0f1a;
+    border-radius: 8px;
+    margin-top: 15px;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.win {
+    color: #4caf50;
+    font-weight: bold;
+    animation: pulse 0.5s infinite alternate;
+}
+
+.lose {
+    color: #f44336;
+}
+
+.jackpot {
+    color: #ffeb3b;
+    font-weight: bold;
+    animation: pulse 0.3s infinite alternate;
+}
+
+@keyframes pulse {
+    from { opacity: 1; }
+    to { opacity: 0.7; }
+}
+
+/* ---- Аккаунт ---- */
+.account-container {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+    border-radius: 15px;
+    padding: 12px 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 2px solid #444;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.account-logo {
+    width: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.account-name {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 20px;
+}
+
+/* ---- Вкладки (под слотом) ---- */
+.tabs-container {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+    border-radius: 15px;
+    padding: 12px 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 2px solid #444;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    font-size: 16px;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    flex: 1;
+    border-bottom: 3px solid transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tab-btn i {
+    font-size: 24px;
+}
+
+.tab-btn span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.tab-btn:hover {
+    color: #f8d347;
+}
+
+.tab-btn.active {
+    color: #f8d347;
+    border-bottom-color: #f8d347;
+}
+
+.tab-btn:active {
+    transform: scale(0.9);
+}
+
+/* ---- Реклама ---- */
+.ad-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.ad-modal {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    border: 3px solid #f8d347;
+    box-shadow: 0 0 50px rgba(248, 211, 71, 0.3);
+}
+
+.ad-modal h2 {
+    color: #f8d347;
+    margin: 0 0 15px 0;
+    font-size: 22px;
+}
+
+.ad-timer {
+    font-size: 16px;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+#adTimer {
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.video-container {
+    width: 100%;
+    margin: 15px 0;
+    background-color: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#adVideo {
+    width: 100%;
+    max-height: 300px;
+}
+
+.close-ad-btn {
+    background: linear-gradient(to bottom, #f44336, #d32f2f);
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.close-ad-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.ad-reward {
+    background-color: #1a1a2e;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid #4caf50;
+}
+
+/* ---- Промокоды ---- */
+.promo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.promo-modal {
+    background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    padding: 25px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 2px solid #ff6b6b;
+    box-shadow: 0 0 40px rgba(255, 107, 107, 0.4);
+}
+
+.promo-modal h2 {
+    color: #ff6b6b;
+    margin: 0 0 15px 0;
+    font-size: 22px;
+}
+
+.promo-icon {
+    font-size: 48px;
+    color: #ff6b6b;
+    margin-bottom: 15px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.promo-hint {
+    color: #d0d0d0;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.promo-code-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    border: 2px solid #444;
+    border-radius: 10px;
+    background-color: #0f0f1a;
+    color: #ff6b6b;
+    outline: none;
+    text-transform: uppercase;
+}
+
+.promo-code-input:focus {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+}
+
+.promo-code-input::placeholder {
+    color: #666;
+    letter-spacing: 1px;
+}
+
+#promoSubmitBtn {
+    background: linear-gradient(145deg, #4caf50, #388e3c);
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#promoSubmitBtn:active {
+    transform: scale(0.95);
+}
+
+.close-promo-btn {
+    background: linear-gradient(145deg, #666, #444);
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.close-promo-btn:active {
+    transform: scale(0.95);
+}
+
+/* ---- Адаптив для маленьких экранов ---- */
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+
+    .slot-machine {
+        padding: 15px;
+    }
+
+    .balance-container {
+        padding: 12px;
+    }
+
+    .balance-display {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .balance-amount {
+        font-size: 18px;
+    }
+
+    .vertical-btn {
+        font-size: 12px;
+        padding: 10px 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .slots-container {
+        padding: 10px 5px;
+    }
+
+    .slot {
+        max-width: 70px;
+    }
+
+    .slot-item {
+        font-size: 32px;
+        height: 100px;
+    }
+
+    .spin-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .result-message {
+        font-size: 16px;
+        min-height: 50px;
+        padding: 12px;
+    }
+
+    .tabs-container {
+        padding: 10px 5px;
+    }
+
+    .tab-btn i {
+        font-size: 20px;
+    }
+
+    .tab-btn span {
+        font-size: 9px;
+    }
+
+    .ad-modal {
+        padding: 15px;
+    }
+
+    .promo-modal {
+        padding: 20px;
+    }
+
+    .promo-code-input {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 380px) {
+    .slot-item {
+        font-size: 28px;
+        height: 85px;
+    }
+
+    .slot {
+        max-width: 60px;
+    }
+
+    .balance-amount {
+        font-size: 16px;
+    }
+
+    .tab-btn i {
+        font-size: 18px;
+    }
+
+    .tab-btn span {
+        font-size: 8px;
+    }
+}
+
+/* Убираем скролл на телефонах */
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+/* ============================================ */
+/* СИСТЕМА ВКЛАДОК */
+/* ============================================ */
+
+.tab-content {
+    display: none;
+    width: 100%;
+    max-width: 450px;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================ */
+/* ИНВЕНТАРЬ */
+/* ============================================ */
+
+.inventory-container {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 2px solid #444;
+    min-height: 300px;
+}
+
+.inventory-title {
+    color: #f8d347;
+    font-size: 22px;
+    margin: 0 0 20px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 5px;
+}
+
+/* ---- Карточка NFT ---- */
+.nft-card {
+    background: linear-gradient(145deg, #3a3a4e, #2a2a3e);
+    border-radius: 12px;
+    padding: 15px 10px 12px;
+    box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.05),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.3),
+                0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nft-card:hover {
+    transform: translateY(-3px);
+    box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.08),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.3),
+                0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.nft-card:active {
+    transform: scale(0.95);
+}
+
+.nft-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    color: #f8d347;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05), transparent 70%);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.nft-image i {
+    filter: drop-shadow(0 0 10px rgba(248, 211, 71, 0.2));
+    transition: filter 0.3s;
+}
+
+.nft-card:hover .nft-image i {
+    filter: drop-shadow(0 0 20px rgba(248, 211, 71, 0.4));
+}
+
+.nft-view-btn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    width: 100%;
+    max-width: 100px;
+}
+
+.nft-view-btn:hover {
+    background: rgba(248, 211, 71, 0.2);
+    border-color: rgba(248, 211, 71, 0.3);
+    color: #f8d347;
+    box-shadow: 0 0 20px rgba(248, 211, 71, 0.1);
+}
+
+.nft-view-btn:active {
+    transform: scale(0.9);
+}
+
+/* ---- Адаптив для инвентаря ---- */
+@media (max-width: 480px) {
+    .inventory-container {
+        padding: 15px;
+    }
+
+    .inventory-title {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .inventory-grid {
+        gap: 10px;
+    }
+
+    .nft-card {
+        padding: 12px 8px 10px;
+    }
+
+    .nft-image {
+        font-size: 36px;
+    }
+
+    .nft-view-btn {
+        font-size: 10px;
+        padding: 5px 12px;
+        max-width: 80px;
+    }
+}
+
+@media (max-width: 380px) {
+    .inventory-grid {
+        gap: 8px;
+    }
+
+    .nft-card {
+        padding: 10px 6px 8px;
+    }
+
+    .nft-image {
+        font-size: 28px;
+    }
+
+    .nft-view-btn {
+        font-size: 9px;
+        padding: 4px 10px;
+        max-width: 70px;
+    }
+}

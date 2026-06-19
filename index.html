@@ -2,150 +2,293 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моё мини-приложение</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Слот-машина</title>
+    <link rel="stylesheet" href="slotgame.css">
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="profile-card">
-            <div class="avatar-wrapper">
-                <img id="userAvatar" src="" alt="Аватар">
+    <!-- Аккаунт -->
+    <div class="account-container">
+        <div class="account-name">@UNKNOWN</div>
+        <img src="loading.gif" class="account-logo" alt="avatar">
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ВКЛАДКА: СЛОТ-МАШИНА -->
+    <!-- ============================================ -->
+    <div class="tab-content active" id="tab-slotGame">
+        <div class="slot-machine">
+            <div class="balance-container">
+                <div class="balance-vertical">
+                    <div class="balance-display">
+                        <span class="balance-label">БАЛАНС:</span>
+                        <span class="balance-amount" id="balanceAmount">100$</span>
+                    </div>
+                    <button class="ad-btn vertical-btn" id="adBtn">
+                        <i class="fas fa-ad"></i> ПОСМОТРЕТЬ РЕКЛАМУ (+50$)
+                    </button>
+                    <button class="promo-btn vertical-btn" id="promoBtn">
+                        <i class="fas fa-gift"></i> АКТИВИРОВАТЬ ПРОМОКОД
+                    </button>
+                </div>
+
+                <div class="game-info">
+                    <p class="info-item">
+                        🎰 <span>Стартовый баланс: </span>
+                        <span class="info-value">100$</span>
+                    </p>
+                    <p class="info-item">
+                        💸 <span>Стоимость прокрутки: </span>
+                        <span class="info-value">10$</span>
+                    </p>
+                    <p class="info-item">
+                        🎬 <span>За рекламу: </span>
+                        <span class="info-value">+50$</span>
+                    </p>
+                </div>
             </div>
-            <h2 id="userName">Загрузка...</h2>
-            <p id="userTag">@username</p>
+
+            <h1>СЛОТ-МАШИНА</h1>
+
+            <div class="slots-container">
+                <div class="slot" id="slot1">
+                    <div class="slot-reel" id="reel1"></div>
+                </div>
+                <div class="slot" id="slot2">
+                    <div class="slot-reel" id="reel2"></div>
+                </div>
+                <div class="slot" id="slot3">
+                    <div class="slot-reel" id="reel3"></div>
+                </div>
+            </div>
+
+            <button class="spin-btn" id="spinBtn">КРУТИТЬ (-10$)</button>
+            <div class="result-message" id="resultMessage">Нажмите "Крутить" чтобы начать игру</div>
         </div>
     </div>
 
+    <!-- ============================================ -->
+    <!-- ВКЛАДКА: ИНВЕНТАРЬ -->
+    <!-- ============================================ -->
+    <div class="tab-content" id="tab-inventory">
+        <div class="inventory-container">
+            <h2 class="inventory-title">🎒 ИНВЕНТАРЬ</h2>
+            <div class="inventory-grid">
+                <!-- Карточка NFT 1 -->
+                <div class="nft-card">
+                    <div class="nft-image">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <button class="nft-view-btn">Посмотреть</button>
+                </div>
+                <!-- Карточка NFT 2 -->
+                <div class="nft-card">
+                    <div class="nft-image">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <button class="nft-view-btn">Посмотреть</button>
+                </div>
+                <!-- Карточка NFT 3 -->
+                <div class="nft-card">
+                    <div class="nft-image">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <button class="nft-view-btn">Посмотреть</button>
+                </div>
+                <!-- Карточка NFT 4 -->
+                <div class="nft-card">
+                    <div class="nft-image">
+                        <i class="fas fa-skull"></i>
+                    </div>
+                    <button class="nft-view-btn">Посмотреть</button>
+                </div>
+                <!-- Карточка NFT 5 -->
+                <div class="nft-card">
+                    <div class="nft-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <button class="nft-view-btn">Посмотреть</button>
+                </div>
+                <!-- Карточка NFT 6 -->
+                <div class="nft-card">
+                    <div class="nft-image">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <button class="nft-view-btn">Посмотреть</button>
+                </div>
+                <!-- Карточка NFT 7 -->
+                <div class="nft-card">
+                    <div class="nft-image">
+                        <i class="fas fa-meteor"></i>
+                    </div>
+                    <button class="nft-view-btn">Посмотреть</button>
+                </div>
+                <!-- Карточка NFT 8 -->
+                <div class="nft-card">
+                    <div class="nft-image">
+                        <i class="fas fa-ghost"></i>
+                    </div>
+                    <button class="nft-view-btn">Посмотреть</button>
+                </div>
+                <!-- Карточка NFT 9 -->
+                <div class="nft-card">
+                    <div class="nft-image">
+                        <i class="fas fa-phoenix"></i>
+                    </div>
+                    <button class="nft-view-btn">Посмотреть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ВКЛАДКИ (навигация) -->
+    <!-- ============================================ -->
+    <div class="tabs-container">
+        <button class="tab-btn active" data-tab="slotGame" title="Слот-машина">
+            <i class="fas fa-dice"></i>
+            <span>Слот-машина</span>
+        </button>
+        <button class="tab-btn" data-tab="inventory" title="Инвентарь">
+            <i class="fas fa-box-open"></i>
+            <span>Инвентарь</span>
+        </button>
+        <button class="tab-btn" data-tab="shop" title="Магазин">
+            <i class="fas fa-store"></i>
+            <span>Магазин</span>
+        </button>
+        <button class="tab-btn" data-tab="profile" title="Профиль">
+            <i class="fas fa-user"></i>
+            <span>Профиль</span>
+        </button>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- МОДАЛЬНЫЕ ОКНА -->
+    <!-- ============================================ -->
+
+    <!-- Реклама -->
+    <div class="ad-overlay" id="adOverlay">
+        <div class="ad-modal">
+            <h2>РЕКЛАМА</h2>
+            <p class="ad-timer">
+                <span>Реклама закончится через: </span>
+                <span id="adTimer">15</span> сек.
+            </p>
+            <div class="video-container">
+                <video id="adVideo">
+                    <source src="ad.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+            </div>
+            <div class="ad-reward">
+                🎁 +50$ за просмотр рекламы!
+            </div>
+            <button class="close-ad-btn" id="closeAdBtn" disabled>ЗАКРЫТЬ (15)</button>
+        </div>
+    </div>
+
+    <!-- Промокоды -->
+    <div class="promo-overlay" id="promoOverlay">
+        <div class="promo-modal">
+            <h2>АКТИВАЦИЯ ПРОМОКОДА</h2>
+            <div class="promo-icon">
+                <i class="fas fa-gift"></i>
+            </div>
+            <p class="promo-hint">Введите секретный код для получения награды</p>
+
+            <div class="promo-input-container">
+                <input type="text" id="promoInput" placeholder="XXXX-XXXX-XXXX" maxlength="14" class="promo-code-input">
+                <button id="promoSubmitBtn">
+                    <i class="fas fa-check"></i> АКТИВИРОВАТЬ
+                </button>
+            </div>
+
+            <button class="close-promo-btn" id="closePromoBtn">
+                <i class="fas fa-times"></i> ЗАКРЫТЬ
+            </button>
+        </div>
+    </div>
+
+    <script src="money.js"></script>
+    <script src="ad.js"></script>
+    <script src="slotgame.js"></script>
+    <script src="promo.js"></script>
+
     <script>
-        // Инициализация Telegram WebApp
-        const tg = window.Telegram.WebApp;
-        tg.ready();
-        tg.expand();
+        document.addEventListener('DOMContentLoaded', function() {
+            // === СИСТЕМА ВКЛАДОК ===
+            const tabs = document.querySelectorAll('.tab-btn');
+            const tabContents = {
+                slotGame: document.getElementById('tab-slotGame'),
+                inventory: document.getElementById('tab-inventory'),
+                shop: document.getElementById('tab-shop'),
+                profile: document.getElementById('tab-profile')
+            };
 
-        // ТОКЕН ВАШЕГО БОТА (НЕ ПУБЛИКУЙТЕ В ОТКРЫТОМ ДОСТУПЕ!)
-        const BOT_TOKEN = '8816393273:AAECz8RphPtct272NsmVphMekqsepGlWprk';
-        
-        // Функция для отправки запросов к Telegram Bot API
-        async function sendTelegramRequest(method, data) {
-            const url = `https://api.telegram.org/bot${BOT_TOKEN}/${method}`;
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
+            function switchTab(tabId) {
+                Object.keys(tabContents).forEach(key => {
+                    if (tabContents[key]) {
+                        tabContents[key].classList.remove('active');
+                    }
                 });
-                return await response.json();
-            } catch (error) {
-                console.error('Ошибка:', error);
-                return null;
-            }
-        }
 
-        // Получение данных пользователя
-        function getUserData() {
-            if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                const user = tg.initDataUnsafe.user;
-                return {
-                    id: user.id,
-                    firstName: user.first_name || '',
-                    lastName: user.last_name || '',
-                    username: user.username || '',
-                    photoUrl: user.photo_url || null
-                };
-            }
-            return null;
-        }
-
-        // Получение фото профиля через Telegram API
-        async function getUserProfilePhoto(userId) {
-            const result = await sendTelegramRequest('getUserProfilePhotos', {
-                user_id: userId,
-                limit: 1
-            });
-            
-            if (result && result.ok && result.result.total_count > 0) {
-                const photos = result.result.photos;
-                if (photos.length > 0 && photos[0].length > 0) {
-                    const fileId = photos[0][photos[0].length - 1].file_id;
-                    return await getFileUrl(fileId);
+                if (tabContents[tabId]) {
+                    tabContents[tabId].classList.add('active');
                 }
-            }
-            return null;
-        }
 
-        // Получение URL файла по file_id
-        async function getFileUrl(fileId) {
-            const result = await sendTelegramRequest('getFile', {
-                file_id: fileId
+                tabs.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.tab === tabId) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+
+            tabs.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabId = this.dataset.tab;
+                    switchTab(tabId);
+                });
             });
-            
-            if (result && result.ok) {
-                return `https://api.telegram.org/file/bot${BOT_TOKEN}/${result.result.file_path}`;
-            }
-            return null;
-        }
 
-        // Отправка приветственного сообщения от имени бота
-        async function sendWelcomeMessage(chatId, username) {
-            const message = username 
-                ? `👋 Привет, @${username}! Добро пожаловать!` 
-                : '👋 Привет! Добро пожаловать!';
-            
-            await sendTelegramRequest('sendMessage', {
-                chat_id: chatId,
-                text: message
-            });
-        }
+            // Создаём заглушки для shop и profile
+            const shopContent = document.createElement('div');
+            shopContent.id = 'tab-shop';
+            shopContent.className = 'tab-content';
+            shopContent.innerHTML = `
+                <div class="inventory-container">
+                    <h2 class="inventory-title">🏪 МАГАЗИН</h2>
+                    <p style="color: #aaa; text-align: center; padding: 40px 20px; font-size: 18px;">
+                        <i class="fas fa-store" style="font-size: 48px; display: block; margin-bottom: 20px; color: #f8d347;"></i>
+                        Магазин скоро откроется!
+                    </p>
+                </div>
+            `;
+            document.body.insertBefore(shopContent, document.querySelector('.tabs-container'));
 
-        // Основная функция
-        async function initApp() {
-            const userData = getUserData();
-            
-            if (!userData) {
-                document.getElementById('userName').textContent = 'Ошибка загрузки';
-                document.getElementById('userTag').textContent = 'Перезапустите приложение';
-                return;
-            }
+            const profileContent = document.createElement('div');
+            profileContent.id = 'tab-profile';
+            profileContent.className = 'tab-content';
+            profileContent.innerHTML = `
+                <div class="inventory-container">
+                    <h2 class="inventory-title">👤 ПРОФИЛЬ</h2>
+                    <p style="color: #aaa; text-align: center; padding: 40px 20px; font-size: 18px;">
+                        <i class="fas fa-user" style="font-size: 48px; display: block; margin-bottom: 20px; color: #f8d347;"></i>
+                        Информация о профиле
+                    </p>
+                </div>
+            `;
+            document.body.insertBefore(profileContent, document.querySelector('.tabs-container'));
 
-            // Отображаем имя и username
-            const fullName = `${userData.firstName} ${userData.lastName}`.trim() || 'Пользователь';
-            document.getElementById('userName').textContent = fullName;
-            
-            const username = userData.username ? `@${userData.username}` : 'Без username';
-            document.getElementById('userTag').textContent = username;
+            tabContents.shop = document.getElementById('tab-shop');
+            tabContents.profile = document.getElementById('tab-profile');
 
-            // Получаем и отображаем аватарку
-            try {
-                const photoUrl = await getUserProfilePhoto(userData.id);
-                if (photoUrl) {
-                    document.getElementById('userAvatar').src = photoUrl;
-                } else {
-                    // Если фото нет, генерируем аватар с инициалами
-                    const initials = fullName.split(' ').map(n => n[0]).join('').toUpperCase() || 'U';
-                    document.getElementById('userAvatar').src = 
-                        `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&size=200&background=0088cc&color=ffffff`;
-                }
-            } catch (error) {
-                console.error('Ошибка загрузки фото:', error);
-            }
-
-            // Отправляем приветствие в чат с ботом
-            try {
-                // Получаем chat_id из данных
-                const chatId = tg.initDataUnsafe.chat?.id || userData.id;
-                await sendWelcomeMessage(chatId, userData.username);
-                console.log('✅ Приветствие отправлено!');
-            } catch (error) {
-                console.error('Ошибка отправки приветствия:', error);
-            }
-        }
-
-        // Запуск приложения
-        document.addEventListener('DOMContentLoaded', initApp);
+            switchTab('slotGame');
+        });
     </script>
+
 </body>
 </html>
