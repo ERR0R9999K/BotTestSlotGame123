@@ -5,207 +5,147 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Моё мини-приложение</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Подключаем Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="profile-card">
             <div class="avatar-wrapper">
-                <img id="userAvatar" src="https://via.placeholder.com/200x200/0088cc/ffffff?text=LOADING" alt="Аватар">
+                <img id="userAvatar" src="" alt="Аватар">
             </div>
             <h2 id="userName">Загрузка...</h2>
-            <p id="userId">ID: ---</p>
-            <p id="userStatus" class="status">Загрузка данных...</p>
-            <button id="sendDataBtn" class="telegram-btn">📤 Отправить данные боту</button>
-            <button id="closeBtn" class="telegram-btn secondary">✖️ Закрыть</button>
+            <p id="userTag">@username</p>
         </div>
     </div>
 
     <script>
-        // Инициализируем Telegram WebApp
+        // Инициализация Telegram WebApp
         const tg = window.Telegram.WebApp;
-        
-        // Показываем, что приложение готово
         tg.ready();
-        
-        // Расширяем на всю ширину
         tg.expand();
 
-        // Функция для получения данных пользователя
-        function getUserData() {
+        // ТОКЕН ВАШЕГО БОТА (НЕ ПУБЛИКУЙТЕ В ОТКРЫТОМ ДОСТУПЕ!)
+        const BOT_TOKEN = '8816393273:AAECz8RphPtct272NsmVphMekqsepGlWprk';
+        
+        // Функция для отправки запросов к Telegram Bot API
+        async function sendTelegramRequest(method, data) {
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/${method}`;
             try {
-                // Проверяем, есть ли данные пользователя
-                if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                    const user = tg.initDataUnsafe.user;
-                    
-                    // Получаем все нужные данные
-                    const userId = user.id;
-                    const firstName = user.first_name || '';
-                    const lastName = user.last_name || '';
-                    const username = user.username || '';
-                    const languageCode = user.language_code || 'ru';
-                    
-                    // Формируем полное имя
-                    let fullName = `${firstName} ${lastName}`.trim();
-                    if (!fullName && username) {
-                        fullName = '@' + username;
-                    } else if (!fullName) {
-                        fullName = 'Пользователь';
-                    }
-                    
-                    // Получаем фото профиля
-                    // ВНИМАНИЕ: photo_url может быть недоступен!
-                    // Альтернатива - запросить через getUserProfilePhotos
-                    let photoUrl = user.photo_url;
-                    
-                    // Если фото нет, используем заглушку с инициалами
-                    if (!photoUrl) {
-                        const initials = (firstName.charAt(0) + lastName.charAt(0)).toUpperCase() || 'U';
-                        photoUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName + ' ' + lastName)}&size=200&background=0088cc&color=ffffff&font-size=0.5`;
-                    }
-                    
-                    return {
-                        userId: userId,
-                        fullName: fullName,
-                        photoUrl: photoUrl,
-                        username: username,
-                        languageCode: languageCode,
-                        rawData: user
-                    };
-                } else {
-                    // Если данных нет (для тестирования в браузере)
-                    console.warn('⚠️ Данные пользователя не найдены. Используем тестовые данные.');
-                    return {
-                        userId: '123456789',
-                        fullName: 'Тестовый Пользователь',
-                        photoUrl: 'https://ui-avatars.com/api/?name=Test+User&size=200&background=0088cc&color=ffffff',
-                        username: 'test_user',
-                        languageCode: 'ru',
-                        rawData: null
-                    };
-                }
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                return await response.json();
             } catch (error) {
-                console.error('❌ Ошибка получения данных:', error);
-                return {
-                    userId: 'Ошибка',
-                    fullName: 'Ошибка загрузки',
-                    photoUrl: 'https://via.placeholder.com/200x200/ff0000/ffffff?text=ERROR',
-                    username: 'error',
-                    languageCode: 'ru',
-                    rawData: null
-                };
+                console.error('Ошибка:', error);
+                return null;
             }
         }
 
-        // Отображаем данные пользователя на странице
-        function displayUserData() {
+        // Получение данных пользователя
+        function getUserData() {
+            if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+                const user = tg.initDataUnsafe.user;
+                return {
+                    id: user.id,
+                    firstName: user.first_name || '',
+                    lastName: user.last_name || '',
+                    username: user.username || '',
+                    photoUrl: user.photo_url || null
+                };
+            }
+            return null;
+        }
+
+        // Получение фото профиля через Telegram API
+        async function getUserProfilePhoto(userId) {
+            const result = await sendTelegramRequest('getUserProfilePhotos', {
+                user_id: userId,
+                limit: 1
+            });
+            
+            if (result && result.ok && result.result.total_count > 0) {
+                const photos = result.result.photos;
+                if (photos.length > 0 && photos[0].length > 0) {
+                    const fileId = photos[0][photos[0].length - 1].file_id;
+                    return await getFileUrl(fileId);
+                }
+            }
+            return null;
+        }
+
+        // Получение URL файла по file_id
+        async function getFileUrl(fileId) {
+            const result = await sendTelegramRequest('getFile', {
+                file_id: fileId
+            });
+            
+            if (result && result.ok) {
+                return `https://api.telegram.org/file/bot${BOT_TOKEN}/${result.result.file_path}`;
+            }
+            return null;
+        }
+
+        // Отправка приветственного сообщения от имени бота
+        async function sendWelcomeMessage(chatId, username) {
+            const message = username 
+                ? `👋 Привет, @${username}! Добро пожаловать!` 
+                : '👋 Привет! Добро пожаловать!';
+            
+            await sendTelegramRequest('sendMessage', {
+                chat_id: chatId,
+                text: message
+            });
+        }
+
+        // Основная функция
+        async function initApp() {
             const userData = getUserData();
             
-            // Обновляем аватар
-            const avatarImg = document.getElementById('userAvatar');
-            avatarImg.src = userData.photoUrl;
-            avatarImg.alt = userData.fullName;
-            
-            // Добавляем обработку ошибки загрузки фото
-            avatarImg.onerror = function() {
-                this.src = 'https://via.placeholder.com/200x200/0088cc/ffffff?text=USER';
-            };
-            
-            // Обновляем имя
-            document.getElementById('userName').textContent = userData.fullName;
-            
-            // Обновляем ID
-            document.getElementById('userId').textContent = `🆔 ID: ${userData.userId}`;
-            
-            // Обновляем статус
-            const statusEl = document.getElementById('userStatus');
-            if (userData.username) {
-                statusEl.textContent = `@${userData.username}`;
-                statusEl.style.color = 'var(--tg-theme-hint-color, #888888)';
-            } else {
-                statusEl.textContent = '✅ Данные загружены';
-                statusEl.style.color = '#4CAF50';
-            }
-            
-            // Сохраняем данные в глобальную переменную для отправки
-            window.userData = userData;
-            
-            console.log('✅ Данные пользователя загружены:', userData);
-        }
-
-        // Отправляем данные боту
-        function sendDataToBot() {
-            if (!window.userData) {
-                tg.showPopup({
-                    title: '⚠️ Ошибка',
-                    message: 'Данные пользователя не загружены',
-                    buttons: [{ type: 'close' }]
-                });
+            if (!userData) {
+                document.getElementById('userName').textContent = 'Ошибка загрузки';
+                document.getElementById('userTag').textContent = 'Перезапустите приложение';
                 return;
             }
+
+            // Отображаем имя и username
+            const fullName = `${userData.firstName} ${userData.lastName}`.trim() || 'Пользователь';
+            document.getElementById('userName').textContent = fullName;
             
+            const username = userData.username ? `@${userData.username}` : 'Без username';
+            document.getElementById('userTag').textContent = username;
+
+            // Получаем и отображаем аватарку
             try {
-                // Подготавливаем данные для отправки
-                const dataToSend = {
-                    user_id: window.userData.userId,
-                    name: window.userData.fullName,
-                    photo: window.userData.photoUrl,
-                    username: window.userData.username,
-                    timestamp: new Date().toISOString()
-                };
-                
-                // Отправляем данные через WebApp
-                tg.sendData(JSON.stringify(dataToSend));
-                
-                // Показываем уведомление об успехе
-                tg.showPopup({
-                    title: '✅ Отправлено!',
-                    message: 'Данные успешно отправлены боту.\nПроверьте чат с ботом.',
-                    buttons: [{ type: 'close' }]
-                });
-                
-                console.log('📤 Отправлены данные:', dataToSend);
+                const photoUrl = await getUserProfilePhoto(userData.id);
+                if (photoUrl) {
+                    document.getElementById('userAvatar').src = photoUrl;
+                } else {
+                    // Если фото нет, генерируем аватар с инициалами
+                    const initials = fullName.split(' ').map(n => n[0]).join('').toUpperCase() || 'U';
+                    document.getElementById('userAvatar').src = 
+                        `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&size=200&background=0088cc&color=ffffff`;
+                }
             } catch (error) {
-                console.error('❌ Ошибка отправки:', error);
-                tg.showPopup({
-                    title: '❌ Ошибка',
-                    message: 'Не удалось отправить данные',
-                    buttons: [{ type: 'close' }]
-                });
+                console.error('Ошибка загрузки фото:', error);
+            }
+
+            // Отправляем приветствие в чат с ботом
+            try {
+                // Получаем chat_id из данных
+                const chatId = tg.initDataUnsafe.chat?.id || userData.id;
+                await sendWelcomeMessage(chatId, userData.username);
+                console.log('✅ Приветствие отправлено!');
+            } catch (error) {
+                console.error('Ошибка отправки приветствия:', error);
             }
         }
 
-        // Закрыть мини-приложение
-        function closeApp() {
-            tg.close();
-        }
-
-        // Инициализация приложения
-        document.addEventListener('DOMContentLoaded', function() {
-            // Загружаем данные пользователя
-            displayUserData();
-            
-            // Назначаем обработчики кнопок
-            const sendBtn = document.getElementById('sendDataBtn');
-            sendBtn.addEventListener('click', sendDataToBot);
-            
-            const closeBtn = document.getElementById('closeBtn');
-            closeBtn.addEventListener('click', closeApp);
-            
-            // Обработчик изменения темы Telegram
-            tg.onEvent('themeChanged', function() {
-                console.log('Тема изменена');
-            });
-            
-            // Обработчик изменения размера окна
-            tg.onEvent('viewportChanged', function() {
-                console.log('Размер окна изменен');
-            });
-            
-            console.log('🚀 Мини-приложение загружено!');
-            console.log('📱 Telegram WebApp версия:', tg.version);
-        });
+        // Запуск приложения
+        document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
