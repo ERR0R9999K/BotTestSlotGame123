@@ -1,7 +1,7 @@
 <?php
 // Конфигурация бота
-define('BOT_TOKEN', 'YOUR_BOT_TOKEN_HERE'); // Токен от @BotFather
-define('WEB_APP_URL', 'https://your-domain.com/index.html'); // URL вашего мини-приложения
+define('BOT_TOKEN', '8816393273:AAECz8RphPtct272NsmVphMekqsepGlWprk'); // Токен от @BotFather
+define('WEB_APP_URL', 'https://err0r9999k.github.io/BotTestSlotGame123'); // URL вашего мини-приложения
 
 // Функция для отправки запросов к Telegram API
 function sendTelegramRequest($method, $data = []) {
