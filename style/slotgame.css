@@ -1,0 +1,1209 @@
+/* ---- Глобальные стили ---- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+    padding: 8px;
+    overflow: hidden;
+    gap: 8px;
+}
+
+/* ---- Аккаунт (прилеплен к верху) ---- */
+.account-container {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+    border-radius: 12px;
+    padding: 8px 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 2px solid #444;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.account-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #f8d347;
+}
+
+/* ---- Контейнер для контента (занимает всё свободное место) ---- */
+.content-wrapper {
+    flex: 1;
+    width: 100%;
+    max-width: 450px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* ---- Вкладки (прилеплены к низу) ---- */
+.tabs-container {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+    border-radius: 12px;
+    padding: 8px 6px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 2px solid #444;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    font-size: 12px;
+    padding: 4px 0;
+    cursor: pointer;
+    transition: color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+    border-bottom: 2px solid transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tab-btn i {
+    font-size: 18px;
+}
+
+.tab-btn span {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.tab-btn:hover {
+    color: #f8d347;
+}
+
+.tab-btn.active {
+    color: #f8d347;
+    border-bottom-color: #f8d347;
+}
+
+.tab-btn:active {
+    transform: scale(0.9);
+}
+
+/* ---- Система вкладок (занимает всё свободное место) ---- */
+.tab-content {
+    display: none;
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 0.3s ease;
+    overflow: hidden;
+}
+
+.tab-content.active {
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---- Слот-машина (занимает всё доступное место) ---- */
+.slot-machine {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    border: 2px solid #444;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* ---- Баланс ---- */
+.balance-container {
+    background-color: #0f0f1a;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.balance-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.balance-display {
+    background-color: #1a1a2e;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 2px solid #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.balance-label {
+    color: #f8d347;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.balance-amount {
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.vertical-btn {
+    width: 100%;
+    padding: 4px 10px;
+    font-size: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: all 0.3s;
+}
+
+.ad-btn {
+    background: linear-gradient(to bottom, #4caf50, #388e3c);
+}
+
+.ad-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.ad-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.promo-btn {
+    background: linear-gradient(145deg, #ff6b6b, #ee5a52);
+}
+
+.promo-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.promo-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.vertical-btn:active {
+    transform: scale(0.95);
+}
+
+.game-info {
+    background-color: #1a1a2e;
+    padding: 4px 8px;
+    border-radius: 6px;
+    text-align: left;
+    border: 1px solid #333;
+}
+
+.info-item {
+    margin: 2px 0;
+    font-size: 10px;
+    color: #ddd;
+}
+
+.info-value {
+    color: #f8d347;
+    font-weight: bold;
+}
+
+/* ---- Заголовок ---- */
+h1 {
+    color: #f8d347;
+    margin: 0 0 6px 0;
+    font-size: 16px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+/* ---- Слоты (растягиваются) ---- */
+.slots-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #0f0f1a;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px solid #333;
+    flex: 1;
+    align-items: center;
+    min-height: 0;
+    gap: 8px;
+}
+
+.slot {
+    flex: 1;
+    max-width: 80px;
+    aspect-ratio: 2/3;
+    background-color: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    height: 100%;
+    max-height: 120px;
+}
+
+.slot-reel {
+    position: absolute;
+    width: 100%;
+    transition: top 0.1s;
+    top: 0;
+    left: 0;
+}
+
+.slot-item {
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+}
+
+/* ---- Кнопка крутить ---- */
+.spin-btn {
+    background: linear-gradient(to bottom, #f8d347, #e6b801);
+    border: none;
+    padding: 6px 15px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    color: #1a1a2e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.spin-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.spin-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.spin-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ---- Результат ---- */
+.result-message {
+    min-height: 30px;
+    font-size: 12px;
+    padding: 5px;
+    background-color: #0f0f1a;
+    border-radius: 6px;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.win {
+    color: #4caf50;
+    font-weight: bold;
+    animation: pulse 0.5s infinite alternate;
+}
+
+.lose {
+    color: #f44336;
+}
+
+.jackpot {
+    color: #ffeb3b;
+    font-weight: bold;
+    animation: pulse 0.3s infinite alternate;
+}
+
+@keyframes pulse {
+    from { opacity: 1; }
+    to { opacity: 0.7; }
+}
+
+/* ---- Инвентарь ---- */
+.inventory-container {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    border: 2px solid #444;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.inventory-title {
+    color: #f8d347;
+    font-size: 16px;
+    margin: 0 0 8px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 2px 8px 2px;
+    min-height: 0;
+    align-content: start;
+    grid-auto-rows: min-content;
+}
+
+/* Кастомный скроллбар */
+.inventory-grid::-webkit-scrollbar {
+    width: 4px;
+}
+
+.inventory-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.inventory-grid::-webkit-scrollbar-thumb {
+    background: #f8d347;
+    border-radius: 4px;
+}
+
+/* ---- Карточка NFT ---- */
+.nft-card {
+    border-radius: 10px;
+    padding: 8px 4px 6px;
+    box-shadow: inset 0 0 10px #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.nft-card:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.08),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.3),
+                0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.nft-card:active {
+    transform: scale(0.95);
+}
+
+/* ---- Фоновый контейнер для иконок (без before) ---- */
+.nft-icons-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.12;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    font-family: 'Font Awesome 7 Free';
+    font-weight: 900;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    line-height: 2.8;
+    letter-spacing: 8px;
+    transform: rotate(-4deg) scale(1.1);
+}
+
+/* ---- Иконка NFT ---- */
+.nft-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    margin-bottom: 4px;
+    position: relative;
+    background-position: center;
+    background-size: 100%;
+    z-index: 2;
+}
+
+/* ---- Название NFT ---- */
+.nft-name {
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+    margin: 2px 0 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    padding: 0 2px;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- Кнопка "Посмотреть" ---- */
+.nft-view-btn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 3px 12px;
+    font-size: 8px;
+    font-weight: 600;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    width: auto;
+    min-width: 40px;
+    max-width: 100%;
+}
+
+.nft-view-btn:hover {
+    background: rgba(248, 211, 71, 0.2);
+    border-color: rgba(248, 211, 71, 0.3);
+    color: #f8d347;
+    box-shadow: 0 0 20px rgba(248, 211, 71, 0.1);
+}
+
+.nft-view-btn:active {
+    transform: scale(0.9);
+}
+
+/* ============================================ */
+/* === СТИЛИ ДЛЯ МАГАЗИНА (широкие карточки) === */
+/* ============================================ */
+
+/* ---- Список товаров в магазине ---- */
+.shop-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+    padding-bottom: 4px;
+}
+
+.shop-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.shop-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.shop-list::-webkit-scrollbar-thumb {
+    background: #f8d347;
+    border-radius: 8px;
+}
+
+/* ---- Широкая карточка NFT в магазине ---- */
+.shop-card {
+    border-radius: 16px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    flex-shrink: 0;
+    min-height: 80px;
+}
+
+.shop-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(248, 211, 71, 0.1);
+}
+
+.shop-card:active {
+    transform: scale(0.99);
+}
+
+.nft-icons-background-shop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.08;
+    font-family: 'Font Awesome 7 Free';
+    font-weight: 900;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    letter-spacing: 10px;
+    line-height: 2.6;
+    transform: rotate(-4deg) scale(1.1);
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+/* ---- Логотип NFT в магазине (квадратная иконка) ---- */
+.shop-nft-icon {
+    width: 64px;
+    height: 64px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ---- Правая часть карточки магазина: название + кнопка ---- */
+.shop-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    z-index: 2;
+}
+
+.shop-item-name {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s;
+}
+
+/* ---- Кнопка "Купить" в магазине (аналог "Посмотреть" в инвентаре) ---- */
+.shop-buy-btn {
+    background: rgba(76, 175, 80, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    color: #8bc34a;
+    padding: 6px 18px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.25s;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.shop-buy-btn i {
+    font-size: 12px;
+    color: #8bc34a;
+    transition: 0.2s;
+}
+
+.shop-buy-btn:hover {
+    background: rgba(76, 175, 80, 0.3);
+    border-color: #8bc34a;
+    color: #d4edc9;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.15);
+    transform: scale(1.02);
+}
+
+.shop-buy-btn:active {
+    transform: scale(0.95);
+}
+
+/* ---- Цена NFT в магазине ---- */
+.shop-price {
+    font-size: 12px;
+    color: #f8d347;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+/* ---- Состояние "В инвентаре" для кнопки ---- */
+.shop-buy-btn.owned {
+    background: rgba(76, 175, 80, 0.15);
+    border-color: rgba(76, 175, 80, 0.3);
+    color: #8bc34a;
+}
+
+/* ---- Адаптив для магазина ---- */
+@media (max-width: 480px) {
+    .shop-card {
+        padding: 10px 12px;
+        min-height: 68px;
+        gap: 10px;
+    }
+
+    .shop-nft-icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 12px;
+    }
+
+    .shop-item-name {
+        font-size: 13px;
+    }
+
+    .shop-buy-btn {
+        font-size: 10px;
+        padding: 5px 14px;
+        gap: 6px;
+    }
+
+    .shop-buy-btn i {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 360px) {
+    .shop-card {
+        padding: 8px 10px;
+        min-height: 58px;
+        gap: 8px;
+    }
+
+    .shop-nft-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 10px;
+    }
+
+    .shop-item-name {
+        font-size: 11px;
+    }
+
+    .shop-buy-btn {
+        font-size: 9px;
+        padding: 4px 10px;
+        gap: 4px;
+    }
+
+    .shop-buy-btn i {
+        font-size: 10px;
+    }
+}
+
+@media (max-height: 650px) {
+    .shop-card {
+        padding: 8px 12px;
+        min-height: 60px;
+    }
+
+    .shop-nft-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .shop-item-name {
+        font-size: 12px;
+    }
+
+    .shop-buy-btn {
+        font-size: 9px;
+        padding: 4px 12px;
+    }
+}
+
+/* ---- Адаптив для маленьких экранов (общий) ---- */
+@media (max-width: 480px) {
+    body {
+        padding: 4px;
+        gap: 4px;
+    }
+    
+    .account-container {
+        padding: 5px 10px;
+        border-radius: 10px;
+    }
+    
+    .account-name {
+        font-size: 14px;
+    }
+    
+    .account-logo {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .slot-machine {
+        padding: 8px;
+        border-radius: 10px;
+    }
+    
+    .balance-container {
+        padding: 6px;
+        margin-bottom: 6px;
+    }
+    
+    .balance-display {
+        padding: 3px 8px;
+    }
+    
+    .balance-label {
+        font-size: 11px;
+    }
+    
+    .balance-amount {
+        font-size: 14px;
+    }
+    
+    .vertical-btn {
+        font-size: 9px;
+        padding: 3px 8px;
+    }
+    
+    .game-info {
+        padding: 3px 6px;
+    }
+    
+    .info-item {
+        font-size: 9px;
+        margin: 1px 0;
+    }
+    
+    h1 {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+    
+    .slots-container {
+        padding: 5px;
+        gap: 5px;
+    }
+    
+    .slot {
+        max-width: 65px;
+        max-height: 100px;
+    }
+    
+    .slot-item {
+        height: 100px;
+        font-size: 26px;
+    }
+    
+    .spin-btn {
+        font-size: 11px;
+        padding: 5px 12px;
+        margin-bottom: 4px;
+        margin-top: 4px;
+    }
+    
+    .result-message {
+        font-size: 11px;
+        min-height: 25px;
+        padding: 4px;
+    }
+    
+    .tabs-container {
+        padding: 5px 4px;
+        border-radius: 10px;
+    }
+    
+    .tab-btn i {
+        font-size: 15px;
+    }
+    
+    .tab-btn span {
+        font-size: 7px;
+    }
+    
+    .inventory-container {
+        padding: 8px;
+        border-radius: 10px;
+    }
+    
+    .inventory-title {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+    
+    .inventory-grid {
+        gap: 4px;
+    }
+    
+    .nft-image {
+        font-size: 20px;
+    }
+}
+
+@media (max-height: 650px) {
+    .slot {
+        max-height: 80px;
+    }
+    
+    .slot-item {
+        height: 80px;
+        font-size: 22px;
+    }
+    
+    .balance-container {
+        padding: 4px;
+        margin-bottom: 4px;
+    }
+    
+    .balance-display {
+        padding: 2px 6px;
+    }
+    
+    .balance-label {
+        font-size: 10px;
+    }
+    
+    .balance-amount {
+        font-size: 12px;
+    }
+    
+    .vertical-btn {
+        font-size: 8px;
+        padding: 2px 6px;
+    }
+    
+    .game-info {
+        padding: 2px 6px;
+    }
+    
+    .info-item {
+        font-size: 8px;
+        margin: 1px 0;
+    }
+    
+    h1 {
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+    
+    .slots-container {
+        padding: 4px;
+        margin: 3px 0;
+    }
+    
+    .spin-btn {
+        font-size: 10px;
+        padding: 4px 10px;
+        margin-bottom: 3px;
+    }
+    
+    .result-message {
+        font-size: 10px;
+        min-height: 20px;
+        padding: 3px;
+        margin-top: 3px;
+    }
+    
+    .tabs-container {
+        padding: 4px 3px;
+    }
+    
+    .tab-btn i {
+        font-size: 13px;
+    }
+    
+    .tab-btn span {
+        font-size: 6px;
+    }
+}
+
+/* ---- Реклама ---- */
+.ad-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.ad-modal {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    border: 3px solid #f8d347;
+    box-shadow: 0 0 50px rgba(248, 211, 71, 0.3);
+}
+
+.ad-modal h2 {
+    color: #f8d347;
+    margin: 0 0 15px 0;
+    font-size: 22px;
+}
+
+.ad-timer {
+    font-size: 16px;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+#adTimer {
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.video-container {
+    width: 100%;
+    margin: 15px 0;
+    background-color: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#adVideo {
+    width: 100%;
+    max-height: 300px;
+}
+
+.close-ad-btn {
+    background: linear-gradient(to bottom, #f44336, #d32f2f);
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.close-ad-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.ad-reward {
+    background-color: #1a1a2e;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 18px;
+    border: 2px solid #4caf50;
+}
+
+/* ---- Промокоды ---- */
+.promo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.promo-modal {
+    background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    padding: 25px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 2px solid #ff6b6b;
+    box-shadow: 0 0 40px rgba(255, 107, 107, 0.4);
+}
+
+.promo-modal h2 {
+    color: #ff6b6b;
+    margin: 0 0 15px 0;
+    font-size: 22px;
+}
+
+.promo-icon {
+    font-size: 48px;
+    color: #ff6b6b;
+    margin-bottom: 15px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.promo-hint {
+    color: #d0d0d0;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.promo-code-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    border: 2px solid #444;
+    border-radius: 10px;
+    background-color: #0f0f1a;
+    color: #ff6b6b;
+    outline: none;
+    text-transform: uppercase;
+}
+
+.promo-code-input:focus {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+}
+
+.promo-code-input::placeholder {
+    color: #666;
+    letter-spacing: 1px;
+}
+
+#promoSubmitBtn {
+    background: linear-gradient(145deg, #4caf50, #388e3c);
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#promoSubmitBtn:active {
+    transform: scale(0.95);
+}
+
+.close-promo-btn {
+    background: linear-gradient(145deg, #666, #444);
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.close-promo-btn:active {
+    transform: scale(0.95);
+}
+
+/* Убираем скролл на телефонах */
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
