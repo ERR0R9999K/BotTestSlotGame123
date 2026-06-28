@@ -4,165 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Слот-машина</title>
-    <link rel="stylesheet" href="slotgame.css">
-    <link rel="icon" type="image/png" href="icon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style/slotgame.css">
+    <link rel="stylesheet" href="style/icons.css">
+    <link rel="icon" type="image/png" href="style/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Аккаунт -->
+    <!-- Аккаунт (прилеплен к верху) -->
     <div class="account-container">
         <div class="account-name">@UNKNOWN</div>
-        <img src="loading.gif" class="account-logo" alt="avatar">
+        <img src="style/loading.gif" class="account-logo" alt="avatar">
     </div>
 
-    <!-- ============================================ -->
-    <!-- ВКЛАДКА: СЛОТ-МАШИНА -->
-    <!-- ============================================ -->
-    <div class="tab-content active" id="tab-slotGame">
-        <div class="slot-machine">
-            <div class="balance-container">
-                <div class="balance-vertical">
-                    <div class="balance-display">
-                        <span class="balance-label">БАЛАНС:</span>
-                        <span class="balance-amount" id="balanceAmount">100$</span>
+    <!-- Контент (занимает всё свободное место) -->
+    <div class="content-wrapper">
+        <!-- ============================================ -->
+        <!-- ВКЛАДКА: СЛОТ-МАШИНА -->
+        <!-- ============================================ -->
+        <div class="tab-content" id="tab-slotGame">
+            <div class="slot-machine">
+                <div class="balance-container">
+                    <div class="balance-vertical">
+                        <div class="balance-display">
+                            <span class="balance-label">БАЛАНС:</span>
+                            <span class="balance-amount" id="balanceAmount" style="color: rgb(76, 175, 80);">6130$</span>
+                        </div>
+                        <button class="ad-btn vertical-btn" id="adBtn" data-dynamic="true">
+                            <i class="fas fa-ad"></i> ПОСМОТРЕТЬ РЕКЛАМУ (+50$)
+                        </button>
+                        <button class="promo-btn vertical-btn" id="promoBtn">
+                            <i class="fas fa-gift"></i> АКТИВИРОВАТЬ ПРОМОКОД
+                        </button>
                     </div>
-                    <button class="ad-btn vertical-btn" id="adBtn">
-                        <i class="fas fa-ad"></i> ПОСМОТРЕТЬ РЕКЛАМУ (+50$)
-                    </button>
-                    <button class="promo-btn vertical-btn" id="promoBtn">
-                        <i class="fas fa-gift"></i> АКТИВИРОВАТЬ ПРОМОКОД
-                    </button>
+
+                    <div class="game-info">
+                        <p class="info-item">
+                            🎰 <span>Стартовый баланс: </span>
+                            <span class="info-value">100$</span>
+                        </p>
+                        <p class="info-item">
+                            💸 <span>Стоимость прокрутки: </span>
+                            <span class="info-value">10$</span>
+                        </p>
+                        <p class="info-item">
+                            🎬 <span>За рекламу: </span>
+                            <span class="info-value">+50$</span>
+                        </p>
+                    </div>
                 </div>
 
-                <div class="game-info">
-                    <p class="info-item">
-                        🎰 <span>Стартовый баланс: </span>
-                        <span class="info-value">100$</span>
-                    </p>
-                    <p class="info-item">
-                        💸 <span>Стоимость прокрутки: </span>
-                        <span class="info-value">10$</span>
-                    </p>
-                    <p class="info-item">
-                        🎬 <span>За рекламу: </span>
-                        <span class="info-value">+50$</span>
-                    </p>
+                <h1>СЛОТ-МАШИНА</h1>
+
+                <div class="slots-container">
+                    <div class="slot" id="slot1">
+                        <div class="slot-reel" id="reel1" style="top: -1900px;"><div class="slot-item" style="height: 120px;">🍋</div><div class="slot-item" style="height: 120px;">🍋</div><div class="slot-item" style="height: 120px;">🍋</div><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">🍉</div><div class="slot-item" style="height: 120px;">🍇</div><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">🍋</div><div class="slot-item" style="height: 120px;">🍒</div><div class="slot-item" style="height: 120px;">🍊</div><div class="slot-item" style="height: 120px;">🍋</div><div class="slot-item" style="height: 120px;">💰</div><div class="slot-item" style="height: 120px;">🔔</div><div class="slot-item" style="height: 120px;">🍋</div><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">🍉</div><div class="slot-item" style="height: 120px;">🍒</div><div class="slot-item" style="height: 120px;">💰</div><div class="slot-item" style="height: 120px;">🍊</div><div class="slot-item" style="height: 120px;">🍒</div></div>
+                    </div>
+                    <div class="slot" id="slot2">
+                        <div class="slot-reel" id="reel2" style="top: -1900px;"><div class="slot-item" style="height: 120px;">🍊</div><div class="slot-item" style="height: 120px;">🔔</div><div class="slot-item" style="height: 120px;">🍉</div><div class="slot-item" style="height: 120px;">💰</div><div class="slot-item" style="height: 120px;">🍒</div><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">🍒</div><div class="slot-item" style="height: 120px;">🍉</div><div class="slot-item" style="height: 120px;">🔔</div><div class="slot-item" style="height: 120px;">🍋</div><div class="slot-item" style="height: 120px;">🍇</div><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">🍉</div><div class="slot-item" style="height: 120px;">🍒</div><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">🔔</div><div class="slot-item" style="height: 120px;">🍉</div><div class="slot-item" style="height: 120px;">🍇</div><div class="slot-item" style="height: 120px;">🍊</div></div>
+                    </div>
+                    <div class="slot" id="slot3">
+                        <div class="slot-reel" id="reel3" style="top: -1900px;"><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">💰</div><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">🍊</div><div class="slot-item" style="height: 120px;">🍉</div><div class="slot-item" style="height: 120px;">🍉</div><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">🍒</div><div class="slot-item" style="height: 120px;">🍋</div><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">💰</div><div class="slot-item" style="height: 120px;">🍒</div><div class="slot-item" style="height: 120px;">🍉</div><div class="slot-item" style="height: 120px;">🍇</div><div class="slot-item" style="height: 120px;">🍉</div><div class="slot-item" style="height: 120px;">🍒</div><div class="slot-item" style="height: 120px;">7️⃣</div><div class="slot-item" style="height: 120px;">🔔</div><div class="slot-item" style="height: 120px;">💰</div><div class="slot-item" style="height: 120px;">🍉</div></div>
+                    </div>
                 </div>
+
+                <button class="spin-btn" id="spinBtn" data-dynamic="true">КРУТИТЬ (-15$)</button>
+                <div class="result-message" id="resultMessage" data-dynamic="true">Нажмите "Крутить" чтобы начать игру</div>
             </div>
-
-            <h1>СЛОТ-МАШИНА</h1>
-
-            <div class="slots-container">
-                <div class="slot" id="slot1">
-                    <div class="slot-reel" id="reel1"></div>
-                </div>
-                <div class="slot" id="slot2">
-                    <div class="slot-reel" id="reel2"></div>
-                </div>
-                <div class="slot" id="slot3">
-                    <div class="slot-reel" id="reel3"></div>
-                </div>
-            </div>
-
-            <button class="spin-btn" id="spinBtn">КРУТИТЬ (-10$)</button>
-            <div class="result-message" id="resultMessage">Нажмите "Крутить" чтобы начать игру</div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- ВКЛАДКА: ИНВЕНТАРЬ -->
-    <!-- ============================================ -->
-    <div class="tab-content" id="tab-inventory">
-        <div class="inventory-container">
-            <h2 class="inventory-title">🎒 ИНВЕНТАРЬ</h2>
-            <div class="inventory-grid">
-                <!-- Карточка NFT 1 -->
-                <div class="nft-card">
-                    <div class="nft-image">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <button class="nft-view-btn">Посмотреть</button>
-                </div>
-                <!-- Карточка NFT 2 -->
-                <div class="nft-card">
-                    <div class="nft-image">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <button class="nft-view-btn">Посмотреть</button>
-                </div>
-                <!-- Карточка NFT 3 -->
-                <div class="nft-card">
-                    <div class="nft-image">
-                        <i class="fas fa-dragon"></i>
-                    </div>
-                    <button class="nft-view-btn">Посмотреть</button>
-                </div>
-                <!-- Карточка NFT 4 -->
-                <div class="nft-card">
-                    <div class="nft-image">
-                        <i class="fas fa-skull"></i>
-                    </div>
-                    <button class="nft-view-btn">Посмотреть</button>
-                </div>
-                <!-- Карточка NFT 5 -->
-                <div class="nft-card">
-                    <div class="nft-image">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <button class="nft-view-btn">Посмотреть</button>
-                </div>
-                <!-- Карточка NFT 6 -->
-                <div class="nft-card">
-                    <div class="nft-image">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <button class="nft-view-btn">Посмотреть</button>
-                </div>
-                <!-- Карточка NFT 7 -->
-                <div class="nft-card">
-                    <div class="nft-image">
-                        <i class="fas fa-meteor"></i>
-                    </div>
-                    <button class="nft-view-btn">Посмотреть</button>
-                </div>
-                <!-- Карточка NFT 8 -->
-                <div class="nft-card">
-                    <div class="nft-image">
-                        <i class="fas fa-ghost"></i>
-                    </div>
-                    <button class="nft-view-btn">Посмотреть</button>
-                </div>
-                <!-- Карточка NFT 9 -->
-                <div class="nft-card">
-                    <div class="nft-image">
-                        <i class="fas fa-phoenix"></i>
-                    </div>
-                    <button class="nft-view-btn">Посмотреть</button>
+        <!-- ============================================ -->
+        <!-- ВКЛАДКА: ИНВЕНТАРЬ -->
+        <!-- ============================================ -->
+        <div class="tab-content" id="tab-inventory">
+            <div class="inventory-container">
+                <h2 class="inventory-title">🎒 ИНВЕНТАРЬ</h2>
+                <div class="inventory-grid" id="inventoryGrid">
+                    <!-- Карточки создаются через JS -->
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- ============================================ -->
-    <!-- ВКЛАДКИ (навигация) -->
-    <!-- ============================================ -->
-    <div class="tabs-container">
-        <button class="tab-btn active" data-tab="slotGame" title="Слот-машина">
-            <i class="fas fa-dice"></i>
-            <span>Слот-машина</span>
-        </button>
-        <button class="tab-btn" data-tab="inventory" title="Инвентарь">
-            <i class="fas fa-box-open"></i>
-            <span>Инвентарь</span>
-        </button>
-        <button class="tab-btn" data-tab="shop" title="Магазин">
-            <i class="fas fa-store"></i>
-            <span>Магазин</span>
-        </button>
-        <button class="tab-btn" data-tab="profile" title="Профиль">
-            <i class="fas fa-user"></i>
-            <span>Профиль</span>
-        </button>
+        <!-- ============================================ -->
+        <!-- ВКЛАДКА: МАГАЗИН -->
+        <!-- ============================================ -->
+        <div class="tab-content" id="tab-shop">
+            <div class="inventory-container" style="padding: 10px 12px;">
+                <h2 class="inventory-title">🏪 МАГАЗИН</h2>
+                <div class="shop-list" id="shopList">
+                    <!-- Карточки магазина создаются через JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- ВКЛАДКА: ПРОФИЛЬ -->
+        <!-- ============================================ -->
+        <div class="tab-content" id="tab-profile">
+            <div class="inventory-container">
+                <h2 class="inventory-title">👤 ПРОФИЛЬ</h2>
+                <p style="color: #aaa; text-align: center; padding: 40px 20px; font-size: 18px;">
+                    <i class="fas fa-user" style="font-size: 48px; display: block; margin-bottom: 20px; color: #f8d347;"></i>
+                    Информация о профиле
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- ВКЛАДКИ (навигация) -->
+        <!-- ============================================ -->
+        <div class="tabs-container">
+            <button class="tab-btn" data-tab="slotGame" title="Слот-машина">
+                <i class="fas fa-dice"></i>
+                <span>Слот-машина</span>
+            </button>
+            <button class="tab-btn active" data-tab="inventory" title="Инвентарь">
+                <i class="fas fa-box-open"></i>
+                <span>Инвентарь</span>
+            </button>
+            <button class="tab-btn" data-tab="shop" title="Магазин">
+                <i class="fas fa-store"></i>
+                <span>Магазин</span>
+            </button>
+            <button class="tab-btn" data-tab="profile" title="Профиль">
+                <i class="fas fa-user"></i>
+                <span>Профиль</span>
+            </button>
+        </div>
     </div>
 
     <!-- ============================================ -->
@@ -186,7 +153,7 @@
             <div class="ad-reward">
                 🎁 +50$ за просмотр рекламы!
             </div>
-            <button class="close-ad-btn" id="closeAdBtn" disabled>ЗАКРЫТЬ (15)</button>
+            <button class="close-ad-btn" id="closeAdBtn" disabled data-dynamic="true">ЗАКРЫТЬ (15)</button>
         </div>
     </div>
 
@@ -212,10 +179,13 @@
         </div>
     </div>
 
-    <script src="money.js"></script>
-    <script src="ad.js"></script>
-    <script src="slotgame.js"></script>
-    <script src="promo.js"></script>
+    <script src="core/money.js"></script>
+    <script src="core/ad.js"></script>
+    <script src="core/slotgame.js"></script>
+    <script src="core/promo.js"></script>
+    <script src="core/nft_config.js"></script>
+    <script src="core/nft_manager.js"></script>
+	<script src="core/nft_modal.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -254,41 +224,15 @@
                 });
             });
 
-            // Создаём заглушки для shop и profile
-            const shopContent = document.createElement('div');
-            shopContent.id = 'tab-shop';
-            shopContent.className = 'tab-content';
-            shopContent.innerHTML = `
-                <div class="inventory-container">
-                    <h2 class="inventory-title">🏪 МАГАЗИН</h2>
-                    <p style="color: #aaa; text-align: center; padding: 40px 20px; font-size: 18px;">
-                        <i class="fas fa-store" style="font-size: 48px; display: block; margin-bottom: 20px; color: #f8d347;"></i>
-                        Магазин скоро откроется!
-                    </p>
-                </div>
-            `;
-            document.body.insertBefore(shopContent, document.querySelector('.tabs-container'));
+            // Инициализация инвентаря и магазина
+            if (typeof NFTManager !== 'undefined') {
+                NFTManager.renderInventory();
+                NFTManager.renderShop();
+            }
 
-            const profileContent = document.createElement('div');
-            profileContent.id = 'tab-profile';
-            profileContent.className = 'tab-content';
-            profileContent.innerHTML = `
-                <div class="inventory-container">
-                    <h2 class="inventory-title">👤 ПРОФИЛЬ</h2>
-                    <p style="color: #aaa; text-align: center; padding: 40px 20px; font-size: 18px;">
-                        <i class="fas fa-user" style="font-size: 48px; display: block; margin-bottom: 20px; color: #f8d347;"></i>
-                        Информация о профиле
-                    </p>
-                </div>
-            `;
-            document.body.insertBefore(profileContent, document.querySelector('.tabs-container'));
-
-            tabContents.shop = document.getElementById('tab-shop');
-            tabContents.profile = document.getElementById('tab-profile');
-
+            // Переключение на слот-машину по умолчанию
             switchTab('slotGame');
         });
     </script>
-
 </body>
 </html>
